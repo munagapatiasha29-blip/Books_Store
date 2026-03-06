@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Your Cart</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+margin:0;
+text-align:center;
+}
+
+.container{
+width:70%;
+margin:auto;
+margin-top:40px;
+}
+
+.book{
+background:white;
+padding:15px;
+margin:15px;
+border-radius:10px;
+box-shadow:0px 0px 6px gray;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.book img{
+width:80px;
+height:100px;
+}
+
+.details{
+flex:1;
+text-align:left;
+margin-left:20px;
+}
+
+.price{
+color:green;
+font-weight:bold;
+}
+
+.remove{
+background:red;
+color:white;
+border:none;
+padding:8px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.total{
+font-size:22px;
+font-weight:bold;
+margin-top:25px;
+}
+
+button{
+padding:10px 20px;
+background:#2196f3;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🛒 Your Cart</h1>
+
+<div class="container">
+
+{% for book in books %}
+
+<div class="book">
+
+<img src="{{ book.image.url }}">
+
+<div class="details">
+<h3>{{ book.title }}</h3>
+<p>Author: {{ book.author }}</p>
+<p class="price">₹{{ book.price }}</p>
+</div>
+
+<a href="{% url 'remove_from_cart' book.id %}">
+<button class="remove">Remove</button>
+</a>
+
+</div>
+
+{% endfor %}
+
+<div class="total">
+Total Amount: ₹{{ total }}
+</div>
+
+<br>
+
+<a href="/">
+<button>Continue Shopping</button>
+</a>
+
+</div>
+
+</body>
+
+</html>
